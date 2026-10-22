@@ -1,0 +1,60 @@
+{
+  "name": "dsh-plugin-bootanim",
+  "version": "0.1.0",
+  "description": "DSH 开机动画：打开时播放一段视频，可在「插件」页里上传素材并选定要播的那一条。刷新不重播。",
+  "type": "module",
+  "main": "entry.js",
+  "exports": {
+    ".": "./entry.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "entry.js",
+    "lib",
+    "src",
+    "assets",
+    "cordis.patch.yml",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek",
+    "harness",
+    "boot",
+    "splash",
+    "animation",
+    "开机动画"
+  ],
+  "license": "MIT",
+  "author": "yan wu <yanyan010128@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gqwu01/dsh-plugin-bootanim.git"
+  },
+  "homepage": "https://github.com/Gqwu01/dsh-plugin-bootanim#readme",
+  "bugs": {
+    "url": "https://github.com/Gqwu01/dsh-plugin-bootanim/issues"
+  },
+  "icon": "icon.svg",
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.4"
+  },
+  "dsh": {
+    "engines": {
+      "dsh": ">=0.2.0-rc.2"
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  }
+}

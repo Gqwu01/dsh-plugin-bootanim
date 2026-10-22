@@ -1,0 +1,9 @@
+# dsh-plugin-bootanim 的 bundle 行。
+#
+# `name` 是 loader 从 profile 的 node_modules 里按「裸包名」解析的模块名，
+# 必须和 package.json 的 name 完全一致。
+# `id` 只是这个条目的标识（同时是设置命名空间），lib/client.js 里的
+# NAMESPACE 必须和它一致，否则设置卡会挂在一个空命名空间上。
+- insert:
+    - id: bootanim
+      name: 'dsh-plugin-bootanim'
