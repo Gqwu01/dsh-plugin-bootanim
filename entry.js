@@ -393,6 +393,43 @@ export function apply(ctx, config) {
   })
 
   /**
+   * 诊断上报：浏览器半区把「执行到哪一步」写回来，外部直接 GET 就能读。
+   * 只为排查「卡片不出现」这类静默失败，不参与任何功能。
+   */
+  const diag = []
+  mount({
+    kind: 'exact',
+    path: `${ROUTE}/diag`,
+    handler: (req, res) => {
+      if (req.method === 'GET' || req.method === 'HEAD') {
+        sendJson(res, 200, { ok: true, entries: diag })
+        return
+      }
+      if (req.method !== 'POST') { sendJson(res, 405, { ok: false, error: 'method not allowed' }); return }
+      if (!isLoopback(req)) { sendJson(res, 403, { ok: false, error: 'loopback only' }); return }
+      void (async () => {
+        let text = ''
+        for await (const chunk of req) {
+          text += chunk.toString('utf8')
+          if (text.length > 8192) break
+        }
+        let entry
+        try {
+          entry = JSON.parse(text)
+        } catch {
+          entry = { raw: text.slice(0, 500) }
+        }
+        diag.push(entry)
+        while (diag.length > 50) diag.shift()
+        sendJson(res, 200, { ok: true })
+      })().catch((error) => {
+        ctx.logger?.warn?.('dsh-plugin-bootanim: diag 写入失败', error)
+        try { res.writeHead(204); res.end() } catch { /* 客户端已断开 */ }
+      })
+    },
+  })
+
+  /**
    * 注入开机屏。
    *
    * 选中的素材在这一步就解析成一个具体 URL，所以开机屏脚本不需要再发任何请求 ——
