@@ -12,23 +12,29 @@
 要求 DSH `>= 0.2.0-rc.2`（桌面版和 Web 版的插件系统都在这个范围内）。
 
 1. 打开侧边栏 **插件** → **添加插件**
-2. 填入包名：
+2. 填入 Git 地址：
 
    ```
-   dsh-plugin-bootanim
+   git+https://github.com/Gqwu01/dsh-plugin-bootanim.git
+   ```
+
+   想固定版本就在末尾加 tag：
+
+   ```
+   git+https://github.com/Gqwu01/dsh-plugin-bootanim.git#v0.1.0
    ```
 
 3. 安装完成后**打开开关启用**
 4. **完全退出并重启**客户端（插件树是启动时读的，刷新页面不算）
 
-首次安装会并行探测 npmjs 与 npmmirror，国内网络会自动选镜像。依赖会一并安装好，不需要额外操作。
+依赖会一并安装好，不需要额外操作。首次安装需要能访问 GitHub，克隆整仓所以比装 npm 包略慢。
 
-也可以填 Git 仓库地址或本地目录：
+也可以从本地安装：
 
 ```sh
-# Git
-git+https://github.com/Gqwu01/dsh-plugin-bootanim.git
-# 本地目录（需先在该目录执行过一次 pnpm install，否则依赖缺失）
+# tarball（npm pack 产物，推荐，依赖会正确安装）
+C:\path\to\dsh-plugin-bootanim-0.1.0.tgz
+# 目录（会软链进去，不安装依赖；需先在该目录跑过一次 pnpm install）
 C:\path\to\dsh-plugin-bootanim
 ```
 
