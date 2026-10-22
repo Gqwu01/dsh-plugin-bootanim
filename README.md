@@ -21,7 +21,7 @@
    想固定版本就在末尾加 tag：
 
    ```
-   git+https://github.com/Gqwu01/dsh-plugin-bootanim.git#v0.1.0
+   git+https://github.com/Gqwu01/dsh-plugin-bootanim.git#v0.0.1
    ```
 
 3. 安装完成后**打开开关启用**
@@ -33,7 +33,7 @@
 
 ```sh
 # tarball（npm pack 产物，推荐，依赖会正确安装）
-C:\path\to\dsh-plugin-bootanim-0.1.0.tgz
+C:\path\to\dsh-plugin-bootanim-0.0.1.tgz
 # 目录（会软链进去，不安装依赖；需先在该目录跑过一次 pnpm install）
 C:\path\to\dsh-plugin-bootanim
 ```

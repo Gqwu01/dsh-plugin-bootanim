@@ -1,6 +1,6 @@
 {
   "name": "dsh-plugin-bootanim",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "DSH 开机动画：打开时播放一段视频，可在「插件」页里上传素材并选定要播的那一条。刷新不重播。",
   "type": "module",
   "main": "entry.js",
